@@ -9,7 +9,8 @@ export default function () {
     consign()
         .include('controllers')
         .then('persistencia')
-        .then('persistence_big_data')
+        .then('database')
+        .then('models_mongo')
         .into(app);
     return app;
 }
