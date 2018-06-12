@@ -8,7 +8,7 @@ export default function () {
     app.use(bodyParser.json());
     consign()
         .include('controllers')
-        .then('persistencia')
+        .then('persistence')
         .then('database')
         .then('models_mongo')
         .into(app);
