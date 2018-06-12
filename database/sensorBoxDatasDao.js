@@ -1,20 +1,16 @@
-class sensorBoxDatasDao {
+function sensorBoxDatasDao(connection,sensorBoxDatasSchema){
+    this._connection = connection;
+    this._schema = sensorBoxDatasSchema;
+}
 
-    constructor(connection, sensorBoxDatasSchema){
-        this._connection = connection;
-        this._schema = sensorBoxDatasSchema;
-    }
+sensorBoxDatasDao.prototype.save = function(sensorBoxData, callback){
+    return this._schema.create(sensorBoxDatas);
+}
 
-    getById(id){
-        return this._schema.findById(id);
-    }
+sensorBoxDatasDao.prototype.list = function(callback){
+    return this._schema.find();
+}
 
-    getAll(){
-        return this._schema.find();
-    }
-
-    create(sensorBoxDatas){
-        return this._schema.create(sensorBoxDatas);
-    }
-
+sensorBoxDatasDao.prototype.findById = function(id,callback){
+    return this._schema.findById(id);
 }

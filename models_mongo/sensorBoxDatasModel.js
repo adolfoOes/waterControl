@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-SensorBoxDatasSchema = new Schema({
+var SensorBoxDatasSchema = new Schema({
     id: String,
     name: String,
     percentageOfWater: Number,
@@ -9,4 +9,6 @@ SensorBoxDatasSchema = new Schema({
     date: Date
 });
 
-export default mongoose.model('SensorBoxDatas', SensorBoxDatasSchema);
+module.exports = function(){
+    return mongoose.model('SensorBoxDatas', SensorBoxDatasSchema)
+};

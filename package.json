@@ -11,5 +11,12 @@
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "consign": "^0.1.6",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.5",
+    "mysql": "^2.15.0"
   }
 }

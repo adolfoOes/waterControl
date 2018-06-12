@@ -1,4 +1,4 @@
-export default function (app) {
+module.exports = function(app) {
 
     app.get('/sensorBoxes',function(req,res){
         console.log("List all sensor boxes.");

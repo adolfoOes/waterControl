@@ -1,4 +1,4 @@
-export default function (app){
+module.exports = function(app){
 
     app.get('/findAllSensorBoxDatas',function(req,res){
         console.log("List all datas.")
