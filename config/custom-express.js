@@ -1,8 +1,9 @@
-import { express } from "express";
-import { consign } from "consign";
-import { bodyParser } from "body-parser";
+var express = require('express');
+var consign = require('consign');
+var bodyParser = require('bodyParser');
 
-export default function () {
+
+module.exports = function (){
     var app = express();
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
