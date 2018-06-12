@@ -1,17 +1,15 @@
-class userDao {
-    constructor(connection) {
-        this._connection = connection;
-    }
-    create(user, callback) {
-        this._connection.query('INSERT INTO users SET ?', user, callback);
-    }
-    listAll(callback) {
-        this._connection.query('SELECT * FROM users', callback);
-    }
-    findById(id, callback) {
-        this._connection.query('SELECT * FROM users WHERE id = ?', id, callback);
-    }
+function userDao(connection){
+    this._connection = connection;
 }
 
+userDao.prototype.save = function(user, callback){
+    this._connection.query('INSERT INTO users SET ?', user, callback);
+}
 
+userDao.prototype.listAll = function(callback) {
+    this._connection.query('SELECT * FROM users', callback);
+}
 
+userDao.prototype.findById = function(id, callback){
+    this._connection.query('SELECT * FROM users WHERE id = ?', id, callback);
+}

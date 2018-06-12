@@ -1,4 +1,4 @@
-import { createConnection } from "mysql";
+var mySql = require('mysql');
 
 function createDBConnection(){
     return createConnection({
@@ -9,6 +9,6 @@ function createDBConnection(){
     });
 }
 
-export default function () {
+module.exports = function () {
     return createDBConnection;
 }
