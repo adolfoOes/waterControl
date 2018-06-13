@@ -3,18 +3,14 @@ module.exports = function(app){
     app.get('/findAllSensorBoxDatas',function(req,res){
         console.log("List all datas.")
 
-        var SensorBoxDatas = app.models_mongo.sensorBoxDatasModel();
+        var sensorBoxDatasSchema = app.models_mongo.sensorBoxDatasModel();
         var connection = app.database.connectionFactory();
+        var sensorBoxDatasDao = app.database.sensorBoxDatasDao(connection,sensorBoxDatasSchema);
 
-        SensorBoxDatas.find(function(error, sensorBoxDatasList){
-            if (error) {
-                red.send(error)
-                console.log("Error on list all datas.")
-            }
+        var sensorBoxDatasList = connection.Mongoose.model('waterBoxDatas',sensorBoxDatasSchema,'waterBoxDatas');
 
-            res.json(sensorBoxDatasList);
-            console.log("Sucess on list all datas.")
-        });
+        console.log("List all datas 2.")
+
     });
 
 }

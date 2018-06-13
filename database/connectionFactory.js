@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 function createMongoDbConnection(){
-    return connect('mongodb://localhost:27017/waterControl');
+    console.log('test');
+    return mongoose.connect('mongodb://localhost/waterControl');
 }
 
 module.exports = function (){

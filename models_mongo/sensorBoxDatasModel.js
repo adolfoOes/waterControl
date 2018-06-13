@@ -7,8 +7,9 @@ var SensorBoxDatasSchema = new Schema({
     percentageOfWater: Number,
     flowPerMinute: Number,
     date: Date
-});
+},{collection: 'waterBoxDatas'}
+);
 
 module.exports = function(){
-    return mongoose.model('SensorBoxDatas', SensorBoxDatasSchema)
+    return mongoose.model('waterBoxDatas', SensorBoxDatasSchema)
 };
