@@ -4,7 +4,7 @@ module.exports = function(app){
         console.log("List all datas.")
 
         var connection = app.database.connectionFactory();
-        var sensorBoxDatasModel = app.models_mongo.sensorBoxDatasModel.createSensorBoxModel();
+        var sensorBoxDatasModel = app.models_mongo.sensorBoxDatasModel(connection);
         
         //var sensorBoxDatasList = sensorBoxDatasModel('waterBoxDatas',sensorBoxDatasSchema,'waterBoxDatas');
 

@@ -10,7 +10,7 @@ var SensorBoxDatasSchema = new Schema({
 },{collection: 'waterBoxDatas'}
 );
 
-function createSensorBoxModel(connection){
-    return connection.model('waterBoxDatas', SensorBoxDatasSchema);
+module.exports = function(connection){
+   return mongoose.model('waterBoxDatas', SensorBoxDatasSchema);
 }
 
