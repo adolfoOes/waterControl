@@ -1,9 +1,15 @@
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/watercontrol');
 
-function createMongoDbConnection(){
-    return mongoose.connect('mongodb://localhost/waterControl');
-}
+var Schema = mongoose.Schema;
 
-module.exports = function (){
-    return createMongoDbConnection;
-}
+var SensorBoxDatasSchema = new Schema({
+    id: String,
+    name: String,
+    percentageOfWater: Number,
+    flowPerMinute: Number,
+    date: Date
+});
+
+module.exports = {Mongoose : mongoose, SensorBoxDatasSchema : SensorBoxDatasSchema}
+   

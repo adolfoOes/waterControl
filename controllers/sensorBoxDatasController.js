@@ -3,13 +3,12 @@ module.exports = function(app){
     app.get('/findAllSensorBoxDatas',function(req,res){
         console.log("List all datas.")
 
-        var connection = app.database.connectionFactory();
-        var sensorBoxDatasModel = app.models_mongo.sensorBoxDatasModel(connection);
-        
-        //var sensorBoxDatasList = sensorBoxDatasModel('waterBoxDatas',sensorBoxDatasSchema,'waterBoxDatas');
+        var dataBase = app.database.connectionFactory;
+        var sensorBoxDatas = dataBase.Mongoose.model('waterBoxDatas', dataBase.SensorBoxDatasSchema, 'waterBoxDatas');
 
-        console.log("List all datas 2.")
+        sensorBoxDatas.find({}).lean().exec(function(error,docs){
+            console.log(docs)
+        })
 
     });
-
 }
