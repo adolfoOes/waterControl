@@ -1,8 +1,7 @@
 module.exports = function(app) {
 
     app.get('/sensorBoxes',function(req,res){
-        console.log("List all sensor boxes.");
-        res.send('OK');
+            res.send('OK');
     });
 
     app.post('/sensorBoxes/createSensorBox',function(req,res){

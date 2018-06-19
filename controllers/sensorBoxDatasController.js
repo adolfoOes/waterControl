@@ -3,7 +3,16 @@ module.exports = function(app){
     app.get('/findAllSensorBoxDatas',function(req,res){
        
         var dataBase = app.database.connectionFactory;
+
+        console.log(app.database)
+
         var sensorBoxDatas = dataBase.Mongoose.model('waterBoxDatas', dataBase.SensorBoxDatasSchema, 'waterBoxDatas');
+        
+        console.log('test')
+
+        var sensorBoxDatasDao = app.dataBase.sensorBoxDatasDao(dataBase);
+
+        console.log(sensorBoxDatasDao)
 
         sensorBoxDatas.find({}).exec(function(error,docs){
         
@@ -12,14 +21,11 @@ module.exports = function(app){
                 res.end();
                 return
             }
-          
+
             res.json(docs);
             res.end();
             return
         })
-        
-        
-
     });
 
     app.post('/newSensorBoxData', function(req,res){
@@ -35,8 +41,6 @@ module.exports = function(app){
             date : req.body.date
         });
 
-        console.log(newData);
-
         newData.save(function(error){
             if (error){
                 res.status(500).json({error : error.message});
@@ -47,9 +51,28 @@ module.exports = function(app){
             res.end();
             return
         })
+    })
 
-        
+    app.post('/deleteSensorBoxData', function(req,res){
+
+        var dataBase = app.database.connectionFactory;
+        var sensorBoxDatas = dataBase.Mongoose.model('waterBoxDatas', dataBase.SensorBoxDatasSchema, 'waterBoxDatas');
+
+        var sensorBoxData = new sensorBoxDatas({
+            id : req.body.id
+        })
+
+
+
+
+
+        if (sensorBoxData.id != ""){
+
+            sensorBoxData.findfindByIdAndRemove
+
+        }
 
     })
+
 
 }
