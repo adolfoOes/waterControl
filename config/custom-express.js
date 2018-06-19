@@ -11,7 +11,6 @@ module.exports = function (){
         .include('controllers')
         .then('persistence')
         .then('database')
-        .then('models_mongo')
         .into(app);
     return app;
 }

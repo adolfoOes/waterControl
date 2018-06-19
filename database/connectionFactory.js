@@ -8,7 +8,7 @@ var SensorBoxDatasSchema = new Schema({
     name: String,
     percentageOfWater: Number,
     flowPerMinute: Number,
-    date: Date
+    date: String
 });
 
 module.exports = {Mongoose : mongoose, SensorBoxDatasSchema : SensorBoxDatasSchema}

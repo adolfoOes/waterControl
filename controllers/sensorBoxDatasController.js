@@ -6,18 +6,25 @@ module.exports = function(app){
         var sensorBoxDatas = dataBase.Mongoose.model('waterBoxDatas', dataBase.SensorBoxDatasSchema, 'waterBoxDatas');
 
         sensorBoxDatas.find({}).exec(function(error,docs){
-            
-            for (var sensorBoxData in docs){
-                console.log(docs[sensorBoxData].id)
+        
+            if (error){
+                res.status(500).json({error : error.message});
+                res.end();
+                return
             }
-            
+          
+            res.json(docs);
+            res.end();
+            return
         })
+        
+        
+
     });
 
     app.post('/newSensorBoxData', function(req,res){
 
-        console.log("New cad.")
-
+        var dataBase = app.database.connectionFactory;
         var sensorBoxDatas = dataBase.Mongoose.model('waterBoxDatas', dataBase.SensorBoxDatasSchema, 'waterBoxDatas');
 
         var newData = new sensorBoxDatas({
@@ -32,14 +39,13 @@ module.exports = function(app){
 
         newData.save(function(error){
             if (error){
-                console.log('error');
                 res.status(500).json({error : error.message});
                 res.end();
                 return;
             }
-            console.log('OK');
             res.json(newData);
             res.end();
+            return
         })
 
         
