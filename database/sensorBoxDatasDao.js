@@ -1,31 +1,24 @@
-function sensorBoxDatasDao(dataBase){
-    this._dataBase = dataBase;
-    this._schema = this._dataBase.Mongoose.model('waterBoxDatas', dataBase.SensorBoxDatasSchema, 'waterBoxDatas');
-}
+module.exports = function(app){
 
-sensorBoxDatasDao.prototype.save = function(sensorBoxData, callback){
-    this._schema.create(sensorBoxDatas);
-}
+    var dataBase = app.database.connectionFactory;
+    var sensorBoxDatas = dataBase.Mongoose.model('waterBoxDatas', dataBase.SensorBoxDatasSchema, 'waterBoxDatas');
 
-sensorBoxDatasDao.prototype.findAll = function(callback){
-    
-    sensorBoxDatas.find({}).exec(function(error,docs){
+    this.findAll = function(req,res){
         
-        callback = docs;
-    })
-}
+        sensorBoxDatas.find({}).exec(function(error,docs){
+            
+            if (error != undefined){
+                res.status(500).json({error : error.message});
+                res.end();
+                return
+            }
 
-sensorBoxDatasDao.prototype.findById = function(id,callback){
-    this._schema.findById(id);
-}
+            res.json(docs);
+            res.end();
+            return
 
-/*
-sensorBoxDatasDao.prototype.findBySensorBoxId = function(id,callback){
-    
-    connection
+        })
+    };
 
-
-    
-    
-    this._schema.findById(id);
-}*/
+    return this
+};

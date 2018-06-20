@@ -1,6 +1,22 @@
 module.exports = function(app){
 
     app.get('/findAllSensorBoxDatas',function(req,res){
+        
+        console.log(app)
+        
+        console.log(app.database.sensorBoxDatasDao.findAll(req,res))
+        
+    
+    });
+
+};
+
+
+
+/*
+module.exports = function(app){
+
+    app.get('/findAllSensorBoxDatas',function(req,res){
        
         var dataBase = app.database.connectionFactory;
 
@@ -10,9 +26,9 @@ module.exports = function(app){
         
         console.log('test')
 
-        var sensorBoxDatasDao = app.dataBase.sensorBoxDatasDao(dataBase);
+        var listSensor = app.dataBase.sensorBoxDatasDao(dataBase).findAll()
 
-        console.log(sensorBoxDatasDao)
+        console.log(listSensor)
 
         sensorBoxDatas.find({}).exec(function(error,docs){
         
@@ -75,4 +91,4 @@ module.exports = function(app){
     })
 
 
-}
+}*/
