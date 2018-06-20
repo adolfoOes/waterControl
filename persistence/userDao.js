@@ -13,3 +13,7 @@ userDao.prototype.listAll = function(callback) {
 userDao.prototype.findById = function(id, callback){
     this._connection.query('SELECT * FROM users WHERE id = ?', id, callback);
 }
+
+module.exports = function(){
+    return userDao;
+}

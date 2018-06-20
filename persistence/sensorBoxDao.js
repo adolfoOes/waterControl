@@ -13,3 +13,7 @@ sensorBoxDao.prototype.list = function(callback){
 sensorBoxDao.prototype.findById = function(id, callback){
     this._connection.query('SELECT * FROM sensorBoxes WHERE id = ?', id, callback);
 }
+
+module.exports = function(){
+    return sensorBoxDao;
+}
