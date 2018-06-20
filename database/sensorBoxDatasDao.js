@@ -42,13 +42,9 @@ module.exports = function(app){
     };
 
     this.deleteFromSensorBoxId = function(req, res){
-
+       
         var newSensorBoxData = new sensorBoxDatas({
-            id : req.body.id, 
-            name : req.body.name,
-            percentageOfWater : req.body.percentageOfWater,
-            flowPerMinute : req.body.flowPerMinute,
-            date : req.body.date
+            id : req.body.id
         });
 
         sensorBoxDatas.remove({'id':newSensorBoxData.id}).exec(function(error){
@@ -68,12 +64,14 @@ module.exports = function(app){
 
     this.save = function(req,res){
 
-        var newSensorBoxData = new sensorBoxDatas({
+        var moment = require('moment')
+
+         var newSensorBoxData = new sensorBoxDatas({
             id : req.body.id, 
             name : req.body.name,
             percentageOfWater : req.body.percentageOfWater,
             flowPerMinute : req.body.flowPerMinute,
-            date : req.body.date
+            date : moment()
         });
 
         newSensorBoxData.save(function(error){
