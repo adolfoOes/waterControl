@@ -18,4 +18,10 @@ module.exports = function(app){
 
     })
 
+    app.post('/deleteFromSensorBoxId', function(req,res){
+
+        app.database.sensorBoxDatasDao.deleteFromSensorBoxId(req,res);
+
+    })
+
 };

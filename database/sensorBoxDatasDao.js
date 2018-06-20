@@ -23,6 +23,8 @@ module.exports = function(app){
 
     this.findDatasBySensorId = function(req, res){
 
+        console.log(req.query)
+
         sensorBoxDatas.find(req.query).exec(function(error,docs){
             
             if (error){
@@ -39,7 +41,30 @@ module.exports = function(app){
 
     };
 
+    this.deleteFromSensorBoxId = function(req, res){
 
+        var newSensorBoxData = new sensorBoxDatas({
+            id : req.body.id, 
+            name : req.body.name,
+            percentageOfWater : req.body.percentageOfWater,
+            flowPerMinute : req.body.flowPerMinute,
+            date : req.body.date
+        });
+
+        sensorBoxDatas.remove({'id':newSensorBoxData.id}).exec(function(error){
+            
+            if (error){
+                res.status(500).json({error : error.message});
+                res.end();
+                return
+            }
+
+            res.status(200)
+            res.end();
+            return
+
+        })
+    };
 
     this.save = function(req,res){
 
