@@ -29,7 +29,7 @@ module.exports = function(app) {
             if (error){
                 res.status(500).json({error : error.message});
             } else {
-                res.json(user);
+                res.json(sensorBox);
             }
             res.end(); 
         });
