@@ -1,20 +1,37 @@
 module.exports = function(app) {
 
     app.get('/sensorBoxes',function(req,res){
-            res.send('OK');
+        var connection = app.persistence.connectionFactory();
+        var sensorBoxDao = new app.persistence.sensorBoxDao(connection);
+
+        sensorBoxDao.listAll(function(error, result){
+
+            if (error){
+                res.status(500).json({error : error.message});
+            } else if (result == '') {
+                res.status(404);
+                res.send('Nenhum sensor box encontrado!');
+            } else {
+                res.json(result);
+            }
+            
+            res.end();
+        });
     });
 
     app.post('/sensorBoxes/createSensorBox',function(req,res){
         var sensorBox = req.body;
-        console.log("Creating a new sensor box.");
         var connection = app.persistence.connectionFactory();
-        var userDao = app.persistence.userDao(connection);
+        var sensorBoxDao = new app.persistence.sensorBoxDao(connection);
 
-        userDao.create(sensorBox,function(error,result){
-            console.log('Sensor box created.');
-            res.json(sensorBox);
+        sensorBoxDao.save(sensorBox,function(error,result){
+            
+            if (error){
+                res.status(500).json({error : error.message});
+            } else {
+                res.json(user);
+            }
+            res.end(); 
         });
-
-        res.send(sensorBox);
     });
 }

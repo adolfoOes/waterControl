@@ -6,17 +6,21 @@ module.exports = function(app) {
 
         userDao.listAll(function(error,result){
 
-            console.log('test')
-            res.json(result);
-            res.end(); 
-
+            if (error){
+                res.status(500).json({error : error.message});
+            } else if (result == '') {
+                res.status(404);
+                res.send('Nenhum usuário encontrado!');
+            } else {
+                res.json(result);
+            }
+            
+            res.end();
         });
     });
 
     app.post('/users/createUser',function(req,res){
         var user = req.body;
-        console.log('Creating a new user.');
-        console.log(app.persistence);
         var connection = app.persistence.connectionFactory();
         var userDao = new app.persistence.userDao(connection);
 

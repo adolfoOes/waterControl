@@ -4,7 +4,7 @@ function createDBConnection(){
     return mySql.createConnection({
         host : 'localhost',
         user : 'root',
-        password : '',
+        password : 'root',
         database : 'watercontrol'
     });
 }

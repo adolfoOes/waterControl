@@ -3,15 +3,15 @@ function sensorBoxDao(connection){
 }
 
 sensorBoxDao.prototype.save = function(sensorBox, callback){
-    this._connection.query('INSERT INTO sensorBoxes SET ?', sensorBox, callback);
+    this._connection.query('INSERT INTO sensorBox SET ?', sensorBox, callback);
 }
 
-sensorBoxDao.prototype.list = function(callback){
-    this._connection.query('SELECT * FROM sensorBoxes', callback);
+sensorBoxDao.prototype.listAll = function(callback){
+    this._connection.query('SELECT * FROM sensorBox', callback);
 }
 
 sensorBoxDao.prototype.findById = function(id, callback){
-    this._connection.query('SELECT * FROM sensorBoxes WHERE id = ?', id, callback);
+    this._connection.query('SELECT * FROM sensorBox WHERE id = ?', id, callback);
 }
 
 module.exports = function(){
